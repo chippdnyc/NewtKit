@@ -1,0 +1,5 @@
+[submodule "Carthage/Checkouts/SwiftCBOR"]
+	url = https://github.com/myfreeweb/SwiftCBOR.git
+[submodule "Carthage/Checkouts/Result"]
+	path = Carthage/Checkouts/Result
+	url = https://github.com/antitypical/Result.git
