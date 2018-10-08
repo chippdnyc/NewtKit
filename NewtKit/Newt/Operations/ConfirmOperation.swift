@@ -11,7 +11,7 @@ import Result
 
 public typealias ConfirmResultClosure = ((Result<Void, NewtError>) -> Void)
 
-class ConfirmOperation: NewtOperation {
+public class ConfirmOperation: NewtOperation {
 	private var resultClosure: ConfirmResultClosure?
 	
 	init(hash: Data? = nil, result: ConfirmResultClosure?) {
@@ -26,7 +26,7 @@ class ConfirmOperation: NewtOperation {
 		self.packet = Packet(op: .write, flags: 0, length: cborData.count, group: NMGRGroup.image, seq: 0, id: NMGRImagesCommand.state.rawValue, data: cborData)
 	}
 	
-	override func main() {
+	override public func main() {
 		super.main()
         
 		sendPacket()

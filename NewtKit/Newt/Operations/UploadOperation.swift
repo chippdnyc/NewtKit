@@ -13,7 +13,7 @@ import os
 public typealias UploadProgressClosure = ((_ progress: Double) -> Bool)
 public typealias UploadResultClosure = ((Result<Void, NewtError>) -> Void)
 
-class UploadOperation: NewtOperation {
+public class UploadOperation: NewtOperation {
 	private var progressClosure: UploadProgressClosure?
 	private var resultClosure: UploadResultClosure?
 	
@@ -27,7 +27,7 @@ class UploadOperation: NewtOperation {
 		super.init()
 	}
 	
-	override func main() {
+	override public func main() {
 		super.main()
         
 		// create and send 1st

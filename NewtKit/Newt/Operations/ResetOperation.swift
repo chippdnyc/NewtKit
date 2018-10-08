@@ -11,7 +11,7 @@ import Result
 
 public typealias ResetResultClosure = ((Result<Void, NewtError>) -> Void)
 
-class ResetOperation: NewtOperation {
+public class ResetOperation: NewtOperation {
 	private var resultClosure: ResetResultClosure?
 	
 	init(result: ResetResultClosure?) {
@@ -22,7 +22,7 @@ class ResetOperation: NewtOperation {
 		self.packet = Packet(op: .write, flags: 0, length: 0, group: NMGRGroup.default, seq: 0, id: NMGRCommand.reset.rawValue, data: Data())
 	}
 	
-	override func main() {
+	override public func main() {
 		super.main()
         
 		sendPacket()

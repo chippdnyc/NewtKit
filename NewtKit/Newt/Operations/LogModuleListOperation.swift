@@ -11,7 +11,7 @@ import Result
 
 public typealias LogModuleListResultClosure = ((Result<[LogModule], NewtError>) -> Void)
 
-class LogModuleListOperation: NewtOperation {
+public class LogModuleListOperation: NewtOperation {
     private var resultClosure: LogModuleListResultClosure?
     
     init(result: LogModuleListResultClosure?) {
@@ -22,7 +22,7 @@ class LogModuleListOperation: NewtOperation {
         self.packet = Packet(op: .read, flags: 0, length: 0, group: NMGRGroup.logs, seq: 0, id: NMGRLogsCommand.moduleList.rawValue, data: Data())
     }
     
-    override func main() {
+    override public func main() {
         super.main()
         
         sendPacket()

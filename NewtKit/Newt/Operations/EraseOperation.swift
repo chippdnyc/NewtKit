@@ -11,7 +11,7 @@ import Result
 
 public typealias EraseResultClosure = ((Result<Void, NewtError>) -> Void)
 
-class EraseOperation: NewtOperation {
+public class EraseOperation: NewtOperation {
 	private var resultClosure: EraseResultClosure?
     
 	init(result: EraseResultClosure?) {
@@ -22,7 +22,7 @@ class EraseOperation: NewtOperation {
 		self.packet = Packet(op: .write, flags: 0, length: 0, group: NMGRGroup.image, seq: 0, id: NMGRImagesCommand.erase.rawValue, data: Data())
 	}
 	
-	override func main() {
+	override public func main() {
 		super.main()
 
         sendPacket()

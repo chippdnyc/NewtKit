@@ -11,7 +11,7 @@ import Result
 
 public typealias StatsListResultClosure = ((Result<[String], NewtError>) -> Void)
 
-class StatsListOperation: NewtOperation {
+public class StatsListOperation: NewtOperation {
     
     private var resultClosure: StatsListResultClosure?
     
@@ -23,7 +23,7 @@ class StatsListOperation: NewtOperation {
         self.packet = Packet(op: .read, flags: 0, length: 0, group: NMGRGroup.stats, seq: 0, id: NMGRStatsCommand.list.rawValue, data: Data())
     }
     
-    override func main() {
+    override public func main() {
         super.main()
         
         sendPacket()

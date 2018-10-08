@@ -11,7 +11,7 @@ import Result
 
 public typealias MPStatsResultClosure = ((Result<[MPStat], NewtError>) -> Void)
 
-class MPStatsOperation: NewtOperation {
+public class MPStatsOperation: NewtOperation {
     
     private var resultClosure: MPStatsResultClosure?
     
@@ -23,7 +23,7 @@ class MPStatsOperation: NewtOperation {
         self.packet = Packet(op: .read, flags: 0, length: 0, group: NMGRGroup.default, seq: 0, id: NMGRCommand.mpStats.rawValue, data: Data())
     }
     
-    override func main() {
+    override public func main() {
         super.main()
         
         sendPacket()
