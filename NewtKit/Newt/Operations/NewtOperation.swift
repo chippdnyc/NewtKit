@@ -53,6 +53,7 @@ public class NewtOperation: Operation {
 	var packet: Packet!
 	weak var newtService: NewtService?
     var finishOnDisconnect: Bool { return false }
+    var canTimeout: Bool { return true }
 	
 	override init() {
 		super.init()
@@ -65,10 +66,12 @@ public class NewtOperation: Operation {
 		}
 		executing(true)
         
-        DispatchQueue.global(qos: .utility).asyncAfter(deadline: .now() + .seconds(15)) { [weak self] in
-            guard let self = self, self.isExecuting && (!self.isFinished && !self.isCancelled) else { return }
-            
-            self.didTimeout()
+        if canTimeout {
+            DispatchQueue.global(qos: .utility).asyncAfter(deadline: .now() + .seconds(15)) { [weak self] in
+                guard let self = self, self.isExecuting && !(self.isFinished || self.isCancelled) else { return }
+                
+                self.didTimeout()
+            }
         }
 	}
 	

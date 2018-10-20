@@ -16,7 +16,8 @@ public typealias UploadResultClosure = ((Result<Void, NewtError>) -> Void)
 public class UploadOperation: NewtOperation {
 	private var progressClosure: UploadProgressClosure?
 	private var resultClosure: UploadResultClosure?
-	
+    
+    override var canTimeout: Bool { return false }
 	var data: Data
 	
 	init(data: Data, progress: UploadProgressClosure?, result: UploadResultClosure?) {

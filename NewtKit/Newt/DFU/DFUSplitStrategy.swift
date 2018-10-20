@@ -55,7 +55,7 @@ public class DFUSplitStrategy: DFUStrategy {
         
         stateMachine.delegate = self
         connectionObservation = newtService.observe(\.isTransportConnected) { (newtService, change) in
-            os_log("isConnected %@", log: NewtKitLog.dfu, type: .debug, newtService.isTransportConnected)
+            os_log("isConnected %s", log: NewtKitLog.dfu, type: .debug, newtService.isTransportConnected ? "true" : "false")
             newtService.isTransportConnected ? self.deviceDidConnect() : self.deviceDidDisconnect()
         }
     }
@@ -129,7 +129,7 @@ extension DFUSplitStrategy: DFUStateMachineDelegate {
         
         switch state {
         case _ as DeactivateAppState:
-            os_log("DeactivateAppState (%@) -> EraseOldAppImageState", log: NewtKitLog.dfu, type: .debug, appImage.hash.hexString)
+            os_log("DeactivateAppState (%s) -> EraseOldAppImageState", log: NewtKitLog.dfu, type: .debug, appImage.hash.hexString)
 
             stateMachine.enterState(EraseOldAppImageState(newtService: newtService, image: appImage.hash))
             
@@ -141,7 +141,7 @@ extension DFUSplitStrategy: DFUStateMachineDelegate {
             stateMachine.enterState(uploadState)
             
         case _ as UploadLoaderState:
-            os_log("UploadLoaderState -> SetNewLoaderActiveState (%@)", log: NewtKitLog.dfu, type: .debug, loaderImage.hash.hexString)
+            os_log("UploadLoaderState -> SetNewLoaderActiveState (%s)", log: NewtKitLog.dfu, type: .debug, loaderImage.hash.hexString)
             
             let op = ImageListOperation { [unowned self] (result) in
                 switch result {

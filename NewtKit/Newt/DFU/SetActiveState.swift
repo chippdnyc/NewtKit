@@ -27,7 +27,7 @@ class SetActiveState: DFUState {
         let op = TestOperation(hash: activeImageHash, result: { [unowned self] (result) in
             switch result {
             case .success(_):
-                os_log("SetActiveState: test %@ success", log: NewtKitLog.dfu, type: .debug, self.activeImageHash.hexString)
+                os_log("SetActiveState: test %s success", log: NewtKitLog.dfu, type: .debug, self.activeImageHash.hexString)
                 
                 let op = ResetOperation { [unowned self] (result) in
                     switch result {
@@ -43,7 +43,7 @@ class SetActiveState: DFUState {
                 self.newtService.execute(operation: op)
                 
             case .failure(let error):
-                os_log("SetActiveState %@ failed: %@", log: NewtKitLog.dfu, type: .debug, self.activeImageHash.hexString, error.localizedDescription)
+                os_log("SetActiveState %s failed: %s", log: NewtKitLog.dfu, type: .debug, self.activeImageHash.hexString, error.localizedDescription)
                 
                 self.stateMachine.exitState(self, error: .unknown(error.localizedDescription))
             }
@@ -64,7 +64,7 @@ class SetActiveState: DFUState {
                     self.stateMachine.exitState(self, error: nil)
                     
                 case .failure(let error):
-                    os_log("SetActiveState: confirm failed %@", log: NewtKitLog.dfu, type: .debug, error.localizedDescription)
+                    os_log("SetActiveState: confirm failed %s", log: NewtKitLog.dfu, type: .debug, error.localizedDescription)
                     self.stateMachine.exitState(self, error: .unknown(error.localizedDescription))
                 }
             }

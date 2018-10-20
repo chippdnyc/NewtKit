@@ -151,7 +151,7 @@ extension NewtPeripheralViewController: CBPeripheralDelegate {
 }
 
 // MARK: - NewtServiceTransportDelegate
-extension NewtPeripheralViewController: NewtServiceTransportDelegate {
+extension NewtPeripheralViewController: NewtServiceTransportProtocol {
     func newtService(_ newtService: NewtService, write data: Data) {
         guard let c = newtCharacteristic else { fatalError() }
         let writeType: CBCharacteristicWriteType = c.properties.contains(.writeWithoutResponse) ? .withoutResponse : .withResponse

@@ -26,10 +26,10 @@ class EraseImageState: DFUState {
         let op = EraseOperation { [unowned self]  (result) in
             switch result {
             case .success(_):
-                os_log("Erase %@ success", log: NewtKitLog.dfu, type: .debug, self.imageHash.hexString)
+                os_log("Erase %s success", log: NewtKitLog.dfu, type: .debug, self.imageHash.hexString)
                 self.stateMachine.exitState(self, error: nil)
             case .failure(let error):
-                os_log("Erase %@ failed", log: NewtKitLog.dfu, type: .debug, self.imageHash.hexString)
+                os_log("Erase %s failed", log: NewtKitLog.dfu, type: .debug, self.imageHash.hexString)
                 self.stateMachine.exitState(self, error: .unknown(error.localizedDescription))
             }
         }

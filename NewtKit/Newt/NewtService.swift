@@ -9,7 +9,7 @@
 import Foundation
 import os
 
-public protocol NewtServiceTransportDelegate: class {
+public protocol NewtServiceTransportProtocol: class {
 	func newtService(_ newtService: NewtService, write data: Data)
 }
 
@@ -20,7 +20,7 @@ public class NewtService: NSObject {
     public var operationTimeout: TimeInterval = 15
     @objc public dynamic var isTransportConnected: Bool = false
 	
-	public weak var transport: NewtServiceTransportDelegate?
+	public weak var transport: NewtServiceTransportProtocol?
 	
 	public override init() {
 		operationQueue = OperationQueue()

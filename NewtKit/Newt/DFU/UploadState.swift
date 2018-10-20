@@ -42,7 +42,7 @@ class UploadState: DFUState {
                 self.stateMachine.exitState(self, error: nil)
                 
             case .failure(let error):
-                os_log("Upload failed %@", log: NewtKitLog.dfu, type: .debug, error.localizedDescription)
+                os_log("Upload failed %s", log: NewtKitLog.dfu, type: .debug, error.localizedDescription)
                 self.stateMachine.exitState(self, error: .unknown(error.localizedDescription))
             }
         }
